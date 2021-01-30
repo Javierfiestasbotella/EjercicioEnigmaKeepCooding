@@ -14,31 +14,29 @@ class Rotor():
         self.rotor3_B=['S', 'W', 'U', 'P', 'I', 'F', 'E', 'M', 'B', 'A', 'K', 'X', 'J', 'O', 'H', 'Q', 'R', 'N', 'V', 'G', 'Ñ', 'L', 'D', 'Z', 'T', 'Y', 'C']
         
         
-    #Recorrido del mensaje por los rotores
+    #Recorrido del mensaje por los rotores codificando cada letra, 
     def codificar(self,palabra):
         for a in palabra: 
             b=self.rotor1_A.index(a)
             a=self.rotor1_B[b]
-            #print("primer rotor "+a)
+            #paso por el primer par de rodillos del rotor1
             b=self.rotor2_A.index(a)
             a=self.rotor2_B[b]
-            #print("segundo rotor "+a)
+            #paso por los dos engranajes del rotor 2
             b=self.rotor3_A.index(a)
             a=self.rotor3_B[b]
-
+            #paso por los engranajes del rotor 3
             b=self.reflector.index(a)
             a=self.reflectorB[b]
-           
-            
+            #paso por el reflector
             b=self.rotor3_B.index(a)
             a=self.rotor3_A[b]
-            
+            #Camino de vualta
             b=self.rotor2_B.index(a)
             a=self.rotor2_A[b]
-            
             b=self.rotor1_B.index(a)
             a=self.rotor1_A[b] 
-            self.avanza()
+            self.avanza()#vuelta del engranaje de la primera tuerca del rotor 1
             print(Fore.GREEN+a,end=" ")
         print("\n"+Fore.WHITE)
     
@@ -70,22 +68,18 @@ class Rotor():
             print(Fore.GREEN+a+Fore.WHITE,end=" ")
             
     
-    # creamos un nuevo metodo para que te devuelva la pareja de la letra pulsada
-    def codifica(self, letra):
-        pLetra = self.abecedario.index(letra)
-        return self.reflectorC[pLetra][1]
-        
+    
 
-        #raise ValueError("{} no pertenece al abecedario".format(letra))
+       
 
 
-    # Busca la posicion inicial dentro des strin de abecedario, lo corta y lo pone primero y todo el string anterior lo "pega" justo a continuación
+    # Busca la posicion inicial dentro del rotor1_A, lo corta y lo pone primero y todo el string anterior lo "pega" justo a continuación
     def posicionInicial(self, letra):
         position = self.rotor1_A.index(letra)
         self.rotor1_A = self.rotor1_A[position:] + self.rotor1_A[:position]
 
 
-#método para avanzar 1 posicion cada vez que codifica
+#método para avanzar 1 posicion el rotor1_A cada vez que codifica
     def avanza(self):
         self.rotor1_A = list(self.rotor1_A[1:]) + list(self.rotor1_A[:1])
 
