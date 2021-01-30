@@ -38,6 +38,7 @@ class Rotor():
             
             b=self.rotor1_B.index(a)
             a=self.rotor1_A[b] 
+            self.avanza()
             print(Fore.GREEN+a,end=" ")
         print("\n"+Fore.WHITE)
     
@@ -65,6 +66,7 @@ class Rotor():
             
             b=self.rotor1_B.index(a)
             a=self.rotor1_A[b]
+            self.avanza()
             print(Fore.GREEN+a+Fore.WHITE,end=" ")
             
     
@@ -79,13 +81,13 @@ class Rotor():
 
     # Busca la posicion inicial dentro des strin de abecedario, lo corta y lo pone primero y todo el string anterior lo "pega" justo a continuación
     def posicionInicial(self, letra):
-        position = self.abecedario.index(letra)
+        position = self.rotor1_A.index(letra)
         self.rotor1_A = self.rotor1_A[position:] + self.rotor1_A[:position]
 
 
 #método para avanzar 1 posicion cada vez que codifica
     def avanza(self):
-        self.rotor1_A = list(self.rotor1_A[1:]) + list(self.rotor1_A[0])
+        self.rotor1_A = list(self.rotor1_A[1:]) + list(self.rotor1_A[:1])
 
 
 
