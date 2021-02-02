@@ -1,27 +1,17 @@
 from enigma import *
-from colorama import init, Fore, Back, Style
-
-reflector =  ['O', 'D', 'N', 'B', 'K', 'S', 'U', 'I', 'X', 'C', 'V', 'M', 'G', 'J', 'A', 'Y', 'L', 'Z', 'E', 'Q', 'Ñ', 'T', 'F', 'W', 'R', 'H', 'P']
-reflectorB=  ['B', 'W', 'V', 'K', 'R', 'P', 'H', 'Z', 'L', 'M', 'E', 'O', 'A', 'S', 'G', 'Y', 'D', 'X', 'F', 'C', 'T', 'U', 'J', 'Ñ', 'N', 'I', 'Q']                
-
-
-
-#Pulsar Run o play para empezar: Por ahora solo palabras, no frases y en MAYÚSCULAS.
-
+from random import shuffle
 r = Rotor()
-print("------BIENVENIDOS A KEEP"+Fore.RED+"3NI?M4"+Fore.WHITE+"COODING---------")
-print(Fore.GREEN+"------------------------------------------------------"+Fore.WHITE)
-p_I=input("introduce en mayuscula la letra para la posicion inicial: ")
-r.posicionInicial(p_I)
-codigo=input(Fore.BLUE+"dime una palabra: "+Fore.WHITE) 
-r.codificar(codigo)
-p_I=input("introduce en mayuscula la letra para la posicion inicial: ")
-r.posicionInicial(p_I)
-codigo2=input(Fore.BLUE+"dime que quieres descodificar: "+Fore.WHITE)
-r.descodificar(codigo2)
+r.rotor1=[('Ñ', 'U'), ('E', 'K'), ('F', 'W'), ('V', 'T'), ('A', 'Ñ'), ('D', 'C'), ('X', 'Y'), ('K', 'Z'), ('Q', 'R'), ('H', 'O'), ('J', 'F'), ('L', 'E'), ('S', 'A'), ('W', 'V'), ('U', 'Q'), ('G', 'N'), ('C', 'H'), ('T', 'I'), ('R', 'X'), ('N', 'S'), ('B', 'M'), ('P', 'G'), ('Z', 'D'), ('O', 'B'), ('M', 'P'), ('I', 'J'), ('Y', 'L')]
+r.rotor2=[('T', 'I'), ('M', 'P'), ('A', 'Ñ'), ('W', 'V'), ('S', 'A'), ('N', 'S'), ('E', 'K'), ('H', 'O'), ('O', 'B'), ('J', 'F'), ('Y', 'L'), ('D', 'C'), ('C', 'H'), ('F', 'W'), ('U', 'Q'), ('G', 'N'), ('K', 'Z'), ('Z', 'D'), ('B', 'M'), ('X', 'Y'), ('V', 'T'), ('Q', 'R'), ('R', 'X'), ('I', 'J'), ('P', 'G'), ('Ñ', 'U'), ('L', 'E')]
+r.rotor3=[('U', 'Q'), ('G', 'N'), ('T', 'I'), ('L', 'E'), ('E', 'K'), ('C', 'H'), ('Q', 'R'), ('B', 'M'), ('N', 'S'), ('F', 'W'), ('Z', 'D'), ('Y', 'L'), ('P', 'G'), ('I', 'J'), ('W', 'V'), ('Ñ', 'U'), ('J', 'F'), ('H', 'O'), ('X', 'Y'), ('D', 'C'), ('V', 'T'), ('O', 'B'), ('R', 'X'), ('M', 'P'), ('A', 'Ñ'), ('S', 'A'), ('K', 'Z')]
+r.reflector=[('Z', 'D'), ('E', 'K'), ('Q', 'R'), ('A', 'Ñ'), ('T', 'C'), ('C', 'T'), ('S', 'H'), ('H', 'S'), ('G', 'N'), ('N', 'G'), ('I', 'J'), ('J', 'I'), ('X', 'V'), ('V', 'X'), ('F', 'W'), ('W', 'F'), ('Y', 'Y'), ('L', 'O'), ('O', 'L'), ('M', 'B'), ('B', 'M'), ('U', 'P'), ('P', 'U'), ('D', 'Z'), ('Ñ', 'A'), ('R', 'Q'), ('K', 'E')]
 
 
 
+#shuffle (rotor_pruebas)
+#print(rotor_pruebas)
 
+mensaje=input("dime una palabra: ")
+r.codifica_mensaje(mensaje)
 
 
