@@ -11,6 +11,8 @@ r.reflector=[('Z', 'D'), ('E', 'K'), ('Q', 'R'), ('A', 'Ñ'), ('T', 'C'), ('C', 
 #shuffle (rotor_pruebas)
 #print(rotor_pruebas)
 
+
+print("Bienvenidos a la segunda versión de Enigama realizada con Listas y tuplas:")
 mensaje=input("dime una palabra: ")
 r.codifica_mensaje(mensaje)
 
