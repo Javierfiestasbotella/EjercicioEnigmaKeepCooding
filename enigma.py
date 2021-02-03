@@ -44,6 +44,7 @@ class Rotor():
             self.codifica_rotor(letra_nueva,rotor1,1,0)
             print(letra_nueva,end="")
             
+            
 
 
     def posicionInicial(self, letra):

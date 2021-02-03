@@ -13,7 +13,16 @@ r.reflector=[('Z', 'D'), ('E', 'K'), ('Q', 'R'), ('A', 'Ñ'), ('T', 'C'), ('C', 
 
 
 print("Bienvenidos a la segunda versión de Enigama realizada con Listas y tuplas:")
-mensaje=input("dime una palabra: ")
+
+mensaje=input("introduzca la palabra que quiera para por enigma: \n")
 r.codifica_mensaje(mensaje)
+print("\n")
+iniciar=input("¿Quiere volver a utilizar enigama?: \n")
+while iniciar!="no":
+    mensaje=input("introduzca la palabra que quiera para por enigma: \n")
+    r.codifica_mensaje(mensaje)
+    print("\n")
+    iniciar=input("¿Quiere volver a utilizar enigama?: \n")
+print("Ha sido un placer prestar mis servicios. Hasta pronto.")
 
 
