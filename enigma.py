@@ -1,5 +1,5 @@
 import random
-
+from colorama import init, Fore, Back, Style
 class Rotor():
 
     def __init__(self, abecedario="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ-."):
@@ -42,14 +42,25 @@ class Rotor():
             self.codifica_rotor(letra_nueva,rotor3,1,0)
             self.codifica_rotor(letra_nueva,rotor2,1,0)
             self.codifica_rotor(letra_nueva,rotor1,1,0)
-            print(letra_nueva,end="")
+            print(Fore.GREEN+letra_nueva+Fore.WHITE,end="")
             
             
 
 
-    def posicionInicial(self, letra):
-        position = self.abecedario.index(letra)
-        self.rotorC = self.rotor[position:] + self.rotor[:position]
+    def posicionInicial(self, abc):
+        pos=[]
+        for i in abc:
+            pos.append(i)
+        position = self.abecedario.index(pos[0])
+        self.rotor1 = self.rotor1[position:] + self.rotor1[:position]
+        position = self.abecedario.index(pos[1])
+        self.rotor2 = self.rotor2[position:] + self.rotor2[:position]
+        position = self.abecedario.index(pos[2])
+        self.rotor3 = self.rotor3[position:] + self.rotor3[:position]
+       
+
+        
+
 
     def avanza(self):
         self.rotor1 = self.rotor1[1:] + self.rotor1[:1]
