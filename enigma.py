@@ -1,70 +1,106 @@
 import random
 from colorama import init, Fore, Back, Style
+class Reflector(): 
+    
+    def __init__(self):
+        
+        self.reflector=["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ","ZYXWVUTSRQPOÑNMLKJIHGFEDCBA"]
+        
+        
+    def refleja(self,indice):
+        letra=self.reflector[0][indice]
+        indice_reflejo=self.reflector[1].index(letra)
+        return indice_reflejo    
+   
 class Rotor():
 
-    def __init__(self, abecedario="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ-."):
-        self.abecedario = abecedario
-        self.rotor1=[('Ñ', 'U'), ('E', 'K'), ('F', 'W'), ('V', 'T'), ('A', 'Ñ'), ('D', 'C'), ('X', 'Y'), ('K', 'Z'), ('Q', 'R'), ('H', 'O'), ('J', 'F'), ('L', 'E'), ('S', 'A'), ('W', 'V'), ('U', 'Q'), ('G', 'N'), ('C', 'H'), ('T', 'I'), ('R', 'X'), ('N', 'S'), ('B', 'M'), ('P', 'G'), ('Z', 'D'), ('O', 'B'), ('M', 'P'), ('I', 'J'), ('Y', 'L')]
-        self.rotor2=[('T', 'I'), ('M', 'P'), ('A', 'Ñ'), ('W', 'V'), ('S', 'A'), ('N', 'S'), ('E', 'K'), ('H', 'O'), ('O', 'B'), ('J', 'F'), ('Y', 'L'), ('D', 'C'), ('C', 'H'), ('F', 'W'), ('U', 'Q'), ('G', 'N'), ('K', 'Z'), ('Z', 'D'), ('B', 'M'), ('X', 'Y'), ('V', 'T'), ('Q', 'R'), ('R', 'X'), ('I', 'J'), ('P', 'G'), ('Ñ', 'U'), ('L', 'E')]
-        self.rotor3=[('U', 'Q'), ('G', 'N'), ('T', 'I'), ('L', 'E'), ('E', 'K'), ('C', 'H'), ('Q', 'R'), ('B', 'M'), ('N', 'S'), ('F', 'W'), ('Z', 'D'), ('Y', 'L'), ('P', 'G'), ('I', 'J'), ('W', 'V'), ('Ñ', 'U'), ('J', 'F'), ('H', 'O'), ('X', 'Y'), ('D', 'C'), ('V', 'T'), ('O', 'B'), ('R', 'X'), ('M', 'P'), ('A', 'Ñ'), ('S', 'A'), ('K', 'Z')]
-        self.reflector=[('Z', 'D'), ('E', 'K'), ('Q', 'R'), ('A', 'Ñ'), ('T', 'C'), ('C', 'T'), ('S', 'H'), ('H', 'S'), ('G', 'N'), ('N', 'G'), ('I', 'J'), ('J', 'I'), ('X', 'V'), ('V', 'X'), ('F', 'W'), ('W', 'F'), ('Y', 'Y'), ('L', 'O'), ('O', 'L'), ('M', 'B'), ('B', 'M'), ('U', 'P'), ('P', 'U'), ('D', 'Z'), ('Ñ', 'A'), ('R', 'Q'), ('K', 'E')]
-        
-    
-    
-    def codifica_rotor(self,letra,lista,a,b):      
-        numeracion=[]
-        global orden
-        global letra_nueva
-        for i in lista:
-            d= letra in i[a]
-            numeracion.append(d)
-        orden=numeracion.index(True)
-        letra_nueva=lista[orden][b]
-        return letra_nueva
-        return orden
-    
-    
-    
-    
-    
-    def codifica_mensaje(self,palabra):
-        global letra_nueva
-        rotor1=self.rotor1
-        rotor2=self.rotor2
-        rotor3=self.rotor3
-        reflector=self.reflector
-        abecedario=self.abecedario
-        for letra in palabra:
-            self.codifica_rotor(letra,rotor1,0,1)
-            self.codifica_rotor(letra_nueva,rotor2,0,1)
-            self.codifica_rotor(letra_nueva,rotor3,0,1)
-            self.codifica_rotor(letra_nueva,reflector,1,0)# en esta parte al haber parejas iguales con distinta posicion confunde la letra.
-            self.codifica_rotor(letra_nueva,rotor3,1,0)
-            self.codifica_rotor(letra_nueva,rotor2,1,0)
-            self.codifica_rotor(letra_nueva,rotor1,1,0)
-            print(Fore.GREEN+letra_nueva+Fore.WHITE,end="")
-            
-            
-
-
-    def posicionInicial(self, abc):
-        pos=[]
-        for i in abc:
-            pos.append(i)
-        position = self.abecedario.index(pos[0])
-        self.rotor1 = self.rotor1[position:] + self.rotor1[:position]
-        position = self.abecedario.index(pos[1])
-        self.rotor2 = self.rotor2[position:] + self.rotor2[:position]
-        position = self.abecedario.index(pos[2])
-        self.rotor3 = self.rotor3[position:] + self.rotor3[:position]
+    def __init__(self):
+        self.abecedario=["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"]
+        self._pos_ini = None
+        self.rotor1=["UBGRXAIQTVYLDÑMHCKWNOJFZEPS","QTVYLDPSUBGRXAIÑMHCKWNOJFZE"]
+        self.rotor2=['ÑPODWMELKGIUXCAYTZBNVJSHQRF','CYPTRSÑHBJOLWXKDVMQZIAGUFEN']
+        self.rotor3=['VGMDLFBSTCÑXKPWZHOEJNARYIQU','IGNRVUFMYPXSWÑETCZBDALKQJHO']
        
+    def crea_rotor (self,nombre):
+        tamano=27
+        abecedario="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+        desordena=random.sample(abecedario,tamano)
+        primero=''.join(desordena)
+        desordena=random.sample(abecedario,tamano)
+        segundo=''.join(desordena)
+        nombre=[primero,segundo]
+        return nombre   
+    
+    def conexion (self,indi,rotor):
+        letra=rotor[0][indi]
+        conector=rotor[1].index(letra)
+        #indice=rotor[1][conector]
+        return conector
 
-        
+    def conexion_decodifica(self,indice,rotor):
+        letra=rotor[1][indice]
+        conector=rotor[0].index(letra)
+        return conector
 
 
-    def avanza(self):
-        self.rotor1 = self.rotor1[1:] + self.rotor1[:1]
+    @property
+    def pos_ini(self):
+        return self._pos_ini
 
-    def imprime(self):
-        print("prueba")
-   
+    @pos_ini.setter
+    def pos_ini(self, value):
+        self._pos_ini = self.conexion[0].index(value)
+
+class Enigma():
+    
+    def __init__(self):
+        self.abecedario="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+        self.rotor1=["UBGRXAIQTVYLDÑMHCKWNOJFZEPS","QTVYLDPSUBGRXAIÑMHCKWNOJFZE"]
+        self.rotor2=['ÑPODWMELKGIUXCAYTZBNVJSHQRF','CYPTRSÑHBJOLWXKDVMQZIAGUFEN']
+        self.rotor3=['VGMDLFBSTCÑXKPWZHOEJNARYIQU','IGNRVUFMYPXSWÑETCZBDALKQJHO']
+       
+    def posicion_inicial(self,rotora,rotorb,rotorc,a,b,c):
+        global rotor1
+        global rotor2
+        global rotor3
+        x=rotora[0].index(a)
+        self.rotor1=[rotora[0][x:]+rotora[0][:x],rotora[1][x:]+rotora[1][:x]]
+        y=rotorb[0].index(b) 
+        self.rotor2=[rotorb[0][y:]+rotorb[0][:y],rotorb[1][y:]+rotorb[1][:y]]
+        z=rotorc[0].index(c)
+        self.rotor3=[rotorc[0][z:]+rotorc[0][:z],rotorc[1][z:]+rotorc[1][:z]]
+        return self.rotor1,self.rotor2,self.rotor3
+    
+e=Enigma()
+rf=Reflector()
+r=Rotor()
+posini=[]
+def start():
+    cambio_rotores=input(Fore.BLUE+"Introduce Posicion inicial: trés letras en mayusculas seguidas: "+Fore.WHITE)
+    for s in cambio_rotores:
+        posini.append(s)
+    a=posini[0]
+    b=posini[1]
+    c=posini[2]
+    print("Sobre  la posicion: "+Fore.RED+a,b,c+" ",end="")
+    e.posicion_inicial(r.rotor1,r.rotor2,r.rotor3,a,b,c)
+    mensaje=input(Fore.BLUE+"Introduce mensaje secreto: "+Fore.WHITE)
+    for i in mensaje:
+        indice=e.abecedario.index(i) 
+        indice=r.conexion(indice,e.rotor1)
+        indice=r.conexion(indice,e.rotor2)    
+        indice=r.conexion(indice,e.rotor3)
+        indice=rf.refleja(indice)
+        indice=r.conexion_decodifica(indice,e.rotor3)   
+        indice=r.conexion_decodifica(indice,e.rotor2)
+        fin=r.conexion_decodifica(indice,e.rotor1)
+        mensaje_trans=e.abecedario[fin]
+        print(Fore.GREEN+mensaje_trans+Fore.WHITE,end="")
+
+start()
+
+
+
+
+
+
