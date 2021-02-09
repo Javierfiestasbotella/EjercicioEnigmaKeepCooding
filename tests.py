@@ -10,7 +10,8 @@ class ReflectorTest(unittest.TestCase):
 class RotorTest(unittest.TestCase):
     def test_construye(self):
         rotor = enigma.Rotor()
-        self.assertEqual(rotor.crea_rotor(['DYKZCHULGASQBEÑPXMWOIJTRVFN', 'YTDLMIPNFUHSWRBOGZCVÑQKEAJX']), 'IEJGPRONWAFBXZKHMCVTLÑUQDYS')
+        c=[]
+        self.assertEqual(rotor.crea_rotor(c),['LQRWNZÑEPBXJVKFYHUMAOCDSTGI', 'VPZIDBNCGTHÑQJLORUAEKFSXYMW'] )
 
     def test_codifica(self):
         rotor = enigma.Rotor()
@@ -19,7 +20,13 @@ class RotorTest(unittest.TestCase):
 
     def test_letrasiciales(self):
         pos=enigma.Enigma()
-        self.assertEqual(pos.posicion_inicial(["ABC","BCA"],"B"),["BAC","CAB"])
+        a="A"
+        b="A"
+        c="B"
+        rotora=["ABC","BCA"]
+        rotorb=["BCA","ABC"]
+        rotorc=["CAB","BAC"]
+        self.assertEqual(pos.posicion_inicial(rotora,rotorb,rotorc,a,b,c),["ABC","BCA"],["ACB","BAC"],["BAC","CAB"])
 
 if __name__== '__main__':
     unittest.main()

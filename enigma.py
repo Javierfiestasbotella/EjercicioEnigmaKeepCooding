@@ -4,9 +4,8 @@ class Reflector():
     
     def __init__(self):
         
-        self.reflector=["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ","ZYXWVUTSRQPOÑNMLKJIHGFEDCBA"]
-        
-        
+        self.reflector=["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ "," ZYXWVUTSRQPOÑNMLKJIHGFEDCBA"]
+            
     def refleja(self,indice):
         letra=self.reflector[0][indice]
         indice_reflejo=self.reflector[1].index(letra)
@@ -15,14 +14,14 @@ class Reflector():
 class Rotor():
 
     def __init__(self):
-        self.abecedario=["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"]
+        self.abecedario=["ABCDEFGHIJKLMNÑOPQRSTUVWXYZ "]
         self._pos_ini = None
-        self.rotor1=["UBGRXAIQTVYLDÑMHCKWNOJFZEPS","QTVYLDPSUBGRXAIÑMHCKWNOJFZE"]
-        self.rotor2=['ÑPODWMELKGIUXCAYTZBNVJSHQRF','CYPTRSÑHBJOLWXKDVMQZIAGUFEN']
-        self.rotor3=['VGMDLFBSTCÑXKPWZHOEJNARYIQU','IGNRVUFMYPXSWÑETCZBDALKQJHO']
+        self.rotor1=[" UBGRXAIQTVYLDÑMHCKWNOJFZEPS","QTVYLDPSUBGRXAIÑMHCKWNOJFZE "]
+        self.rotor2=[' ÑPODWMELKGIUXCAYTZBNVJSHQRF','CYPTRSÑHBJOLWXKDVMQZIAGUFEN ']
+        self.rotor3=[' VGMDLFBSTCÑXKPWZHOEJNARYIQU','IGNRVUFMYPXSWÑETCZBDALKQJHO ']
        
     def crea_rotor (self,nombre):
-        tamano=27
+        tamano=28
         abecedario="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
         desordena=random.sample(abecedario,tamano)
         primero=''.join(desordena)
@@ -34,7 +33,6 @@ class Rotor():
     def conexion (self,indi,rotor):
         letra=rotor[0][indi]
         conector=rotor[1].index(letra)
-        #indice=rotor[1][conector]
         return conector
 
     def conexion_decodifica(self,indice,rotor):
@@ -54,10 +52,10 @@ class Rotor():
 class Enigma():
     
     def __init__(self):
-        self.abecedario="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-        self.rotor1=["UBGRXAIQTVYLDÑMHCKWNOJFZEPS","QTVYLDPSUBGRXAIÑMHCKWNOJFZE"]
-        self.rotor2=['ÑPODWMELKGIUXCAYTZBNVJSHQRF','CYPTRSÑHBJOLWXKDVMQZIAGUFEN']
-        self.rotor3=['VGMDLFBSTCÑXKPWZHOEJNARYIQU','IGNRVUFMYPXSWÑETCZBDALKQJHO']
+        self.abecedario="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
+        self.rotor1=[" UBGRXAIQTVYLDÑMHCKWNOJFZEPS","QTVYLDPSUBGRXAIÑMHCKWNOJFZE "]
+        self.rotor2=[' ÑPODWMELKGIUXCAYTZBNVJSHQRF','CYPTRSÑHBJOLWXKDVMQZIAGUFEN ']
+        self.rotor3=[' VGMDLFBSTCÑXKPWZHOEJNARYIQU','IGNRVUFMYPXSWÑETCZBDALKQJHO ']
        
     def posicion_inicial(self,rotora,rotorb,rotorc,a,b,c):
         global rotor1
@@ -85,7 +83,7 @@ def start():
     print("Sobre  la posicion: "+Fore.RED+a,b,c+" ",end="")
     e.posicion_inicial(r.rotor1,r.rotor2,r.rotor3,a,b,c)
     mensaje=input(Fore.BLUE+"Introduce mensaje secreto: "+Fore.WHITE)
-    for i in mensaje:
+    for i in mensaje:#poner una condicion si lo escrito no esta en mayusculas ponerlas. poner tambien espacios para frases
         indice=e.abecedario.index(i) 
         indice=r.conexion(indice,e.rotor1)
         indice=r.conexion(indice,e.rotor2)    
@@ -98,7 +96,6 @@ def start():
         print(Fore.GREEN+mensaje_trans+Fore.WHITE,end="")
 
 start()
-
 
 
 
